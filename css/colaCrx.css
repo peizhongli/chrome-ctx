@@ -1,0 +1,84 @@
+#app {
+    width: 125px;
+    height: 85px;
+}
+
+section {
+    margin: 0 auto 10px
+}
+
+span.des {
+    width: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #666;
+}
+
+.switch-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.switch-btn {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    background: white;
+}
+
+.switch-wrap.open {
+    background: #409eff;
+}
+
+.switch-wrap.open .switch-btn {
+    top: 2px;
+    right: 2px;
+}
+
+.switch-wrap.open .switch-btn:before {
+    content: 'on';
+    color: #fff;
+    position: absolute;
+    right: 18px;
+    top: -2px;
+    font-size: 12px;
+}
+
+.switch-wrap.close .switch-btn:before {
+    content: 'off';
+    color: #a1a1a1;
+    position: absolute;
+    left: 18px;
+    top: 0;
+    font-size: 12px;
+}
+
+.switch-wrap.close {
+    background: #dcdfe6;
+}
+
+.switch-wrap.close .switch-btn {
+    left: 2px;
+    top: 2px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #409eff;
+    font-size: 14px;
+    line-height: 30px;
+    display: inline-block;
+}

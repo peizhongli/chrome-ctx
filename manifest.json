@@ -1,0 +1,34 @@
+{
+    "name": "colaExtension",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "description": "小乐的扩展程序",
+    "browser_action": {
+        "default_icon": "icons/icon.png",
+        "default_title": "小乐的扩展程序",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "icons/icon.png",
+        "16": "icons/icon.png",
+        "48": "icons/icon.png"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "content_scripts": [{
+        "matches": [
+            "<all_urls>"
+        ],
+        "js": [
+            "./js/contentScripts.js"
+        ],
+        "run_at": "document_start"
+    }],
+    "background": {
+        "scripts": [
+            "./js/background.js"
+        ]
+    }
+}
