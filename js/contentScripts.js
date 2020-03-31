@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     // 初始化按钮组
     if (request.cmd == 'init') {
         var res = {
@@ -6,25 +6,30 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             replace: true,
             debug: true,
             clear: true,
+            intention: true,
         }
 
-        codeBtn = document.getElementsByClassName('code-btn')
+        var codeBtn = document.getElementsByClassName('code-btn')
         if (codeBtn.length > 0) {
             if (codeBtn[0].style.display == 'block') {
                 res.code = false
             }
         }
-        replaceBtn = document.getElementById('replaceBtn')
+        var replaceBtn = document.getElementById('replaceBtn')
         if (replaceBtn) {
             res.replace = false
         }
-        debugWindow = document.getElementById('engineWindow')
+        var debugWindow = document.getElementById('engineWindow')
         if (debugWindow) {
             res.debug = false
         }
-        clearImport = document.getElementById('clearImport20')
+        var clearImport = document.getElementById('clearImport20')
         if (clearImport) {
             res.clear = false
+        }
+        var featureSwitch = document.getElementById('featureSwitch')
+        if (featureSwitch) {
+            res.intention = false
         }
         sendResponse(res);
     }
@@ -70,5 +75,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         document.body.appendChild(newScript);
         document.body.removeChild(newScript);
         sendResponse('清空导入指令调用成功');
+    }
+
+    // 意图编辑
+    if (request.cmd == 'featureSwitch') {
+        var newScript = document.createElement('script');
+        newScript.type = 'text/javascript';
+        newScript.innerHTML = 'if(window.intentionSwitch){window.intentionSwitch()}';
+        document.body.appendChild(newScript);
+        document.body.removeChild(newScript);
+        sendResponse('意图指令调用成功');
     }
 });
