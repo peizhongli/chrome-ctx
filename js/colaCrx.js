@@ -5,6 +5,7 @@ window.onload = function () {
     var debugWrap = document.getElementById("debugWrap"); // 高级调试器
     var clearWrap = document.getElementById("clearWrap"); // 清空导入
     var intentionWrap = document.getElementById("intentionWrap"); // 意图开关
+    var conditionWrap = document.getElementById("conditionWrap"); // 条件开关
     var test1 = document.getElementById("test1"); // 第一套
     var test2 = document.getElementById("test2"); // 第二套
     var test3 = document.getElementById("test3"); // 第三套
@@ -47,6 +48,16 @@ window.onload = function () {
             console.log('来自content的回复：' + response);
         });
     }
+
+    // 点击条件开关
+    conditionWrap.onclick = function () {
+        openFn('condition')
+        sendMessageToContentScript({ cmd: 'condition', value: '意图条件开关' }, function (response) {
+            console.log('来自content的回复：' + response);
+        });
+    }
+
+    
 
     // 第一套
     test1.onclick = function () {
@@ -93,6 +104,11 @@ window.onload = function () {
                 intentionWrap.className = 'switch-wrap close'
             } else {
                 intentionWrap.className = 'switch-wrap open'
+            }
+            if (res.condition) {
+                conditionWrap.className = 'switch-wrap close'
+            } else {
+                conditionWrap.className = 'switch-wrap open'
             }
         });
     }

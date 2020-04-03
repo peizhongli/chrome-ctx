@@ -7,6 +7,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             debug: true,
             clear: true,
             intention: true,
+            condition: true
         }
 
         var codeBtn = document.getElementsByClassName('code-btn')
@@ -30,6 +31,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         var featureSwitch = document.getElementById('featureSwitch')
         if (featureSwitch) {
             res.intention = false
+        }
+        var condition = window.localStorage.getItem('showCondition')
+        if (condition) {
+            res.condition = false
         }
         sendResponse(res);
     }
@@ -85,5 +90,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         document.body.appendChild(newScript);
         document.body.removeChild(newScript);
         sendResponse('意图指令调用成功');
+    }
+
+    // 意图条件
+    if (request.cmd == 'condition') {
+        if(window.localStorage.getItem('showCondition')) {
+            window.localStorage.removeItem('showCondition')
+        } else {
+            window.localStorage.setItem('showCondition','all')
+        }
     }
 });
